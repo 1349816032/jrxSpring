@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jrxspring.repository.UserInformationRepo">
+    <resultMap id="userMap" type="com.example.jrxspring.model.UserInformation">
+        <id column="cust_id" property="custId"/>
+        <result column="surname" property="surname"/>
+        <result column="gender" property="gender"/>
+        <result column="educa_des" property="educaDes"/>
+        <result column="mar_des" property="marDes"/>
+        <result column="birthday" property="birthday"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <select id="queryAllUser" resultMap="userMap">
+        select * from user_information;
+    </select>
+    <select id="queryFindByName" resultMap="userMap">
+        select * from user_information where surname = #{name};
+    </select>
+    <select id="queryFindByCustId" resultMap="userMap">
+        select * from user_information where cust_id=#{cust_id};
+    </select>
+    <insert id="insertUserInformation">
+        insert into user_information (surname,gender,educa_des,mar_des,birthday,address) values(#{surname},#{gender},#{educa_des},#{mar_des},#{birthday},#{address});
+    </insert>
+</mapper>

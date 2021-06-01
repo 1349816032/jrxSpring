@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jrxspring.repository.StatisticRepo">
+    <resultMap id="statisticMap" type="com.example.jrxspring.model.Statistic">
+        <id column="s_id" property="sId"></id>
+        <result column="cust_id" property="custId"></result>
+        <result column="update_time" property="updateTime"></result>
+        <result column="trans_date" property="transDate"></result>
+        <result column="surname" property="surname"></result>
+        <result column="tran_max_amt" property="tranMaxAmt"></result>
+        <result column="pay_amt" property="payAmt"></result>
+        <result column="tran_cnt" property="tranCnt"></result>
+        <result column="pay_cnt" property="payCnt"></result>
+        <result column="tran_amt" property="tranAmt"></result>
+    </resultMap>
+    <select id="quertAllStatistic" resultMap="statisticMap">
+        select * from statistic;
+    </select>
+    <select id="queryFindByDate" resultMap="statisticMap">
+        select * from statistic where trans_date =#{date} order by tran_amt desc limit 10;
+    </select>
+    <select id="queryFindDate" resultMap="statisticMap">
+        select * from statistic where trans_date =#{date};
+    </select>
+
+    <insert id="insertStatistic">
+        insert into statistic(cust_id,update_time,trans_date,surname,tran_max_amt,pay_amt,tran_cnt,pay_cnt,tran_amt) values (#{cust_id},#{update_time},#{trans_date},#{surname},#{tran_max_amt},#{pay_amt},#{tran_cnt},#{pay_cnt},#{tran_amt});
+    </insert>
+
+</mapper>

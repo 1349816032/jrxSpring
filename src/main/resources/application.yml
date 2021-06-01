@@ -1,0 +1,19 @@
+server:
+    port: 8080
+
+spring:
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/jrxSpring?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        username: root
+        password: 412968
+    batch:
+        initialize-schema: always
+        job:
+            enabled: false
+
+#logging:
+#    config: classpath:log4j2.yml
+
+mybatis:
+    type-aliases-package: com.example.jrxspring.model
+    mapper-locations: classpath:mapper/*.xml

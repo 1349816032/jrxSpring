@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>统计</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}">
+</head>
+<body>
+<header>
+    <div class="top_banner">
+        <img th:src="@{/images/Banner.png}" alt="">
+    </div>
+</header>
+<div class="content">
+    <div class="navitem">
+        <div class="shortcut">
+            <div class="login">
+                <img th:src="@{/images/profile.png}">
+                <div class="user_info">
+                    <div th:text="欢迎"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function show() {
+                let obj=document.getElementById("rate");
+                if(obj.style.display==="none") obj.style.display="block";
+                else if(obj.style.display==="block") obj.style.display="none";
+            }
+            function away() {
+                let obj=document.getElementById("rate");
+                obj.style.cssText=" display: none;";
+            }
+
+        </script>
+
+        <ul class="nav">
+            <li><a href="/transaction/tran">交易明细</a></li>
+            <li><a href="javascript:void(0);"  onclick= "show()" >统计</a>
+                <ul id="rate" style="display: block">
+                    <li><a href="/statistic/statistic" style="color: #a6a6a6">折线图</a></li>
+                    <li><a href="/statistic/statistic" style="color: #a6a6a6">折线图</a></li>
+                    <li><a href="/statistic/statistic" style="color: #a6a6a6">折线图</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <div  class="rg_layout">
+        <div id="main" class="rg_form">
+        </div>
+
+        <div></div>
+    </div>
+</div>
+</body>
+</html>

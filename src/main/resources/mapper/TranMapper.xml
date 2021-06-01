@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jrxspring.repository.DetailTransactionRepo">
+    <resultMap id="tranMap" type="com.example.jrxspring.model.DetailTransaction">
+        <id column="trans_id" property="transId"></id>
+        <result column="cust_id" property="custId"></result>
+        <result column="account" property="account"></result>
+        <result column="card_nbr" property="cardNbr"></result>
+        <result column="tranno" property="tranno"></result>
+        <result column="month_nbr" property="monthNbr"></result>
+        <result column="bill" property="bill"></result>
+        <result column="trans_type" property="transType"></result>
+        <result column="txn_datetime" property="txnDatetime"></result>
+    </resultMap>
+
+    <select id="queryAllDetailTransaction" resultMap="tranMap">
+        select * from detail_transaction;
+    </select>
+    <select id="queryFindByCustId" resultMap="tranMap">
+        select * from detail_transaction where cust_id=#{custId};
+    </select>
+    <select id="queryFindByDate" resultMap="tranMap">
+        select * from detail_transaction where txn_datetime=#{txnDateTime};
+    </select>
+    <select id="queryFindByTransType" resultMap="tranMap">
+        select * from detail_transaction where trans_type=#{transType};
+    </select>
+    <select id="queryFindByTranno" resultMap="tranMap">
+        select * from detail_transaction where tranno=#{tranno};
+    </select>
+    <select id="queryStatistic" resultMap="tranMap">
+        select * from detail_transaction where cust_id=#{custId} and txn_datetime=#{txnDatetime};
+    </select>
+    <select id="querySortByDate" resultMap="tranMap">
+        select * from detail_transaction group by txn_datetime,trans_id;
+    </select>
+    <insert id="insertDetailTransaction">
+        insert into detail_transaction(cust_id,account,card_nbr,tranno,month_nbr,bill,trans_type,txn_datetime) values(#{cust_id},#{account},#{card_nbr},#{tranno},#{month_nbr},#{bill},#{trans_type},#{txn_datetime});
+    </insert>
+</mapper>
